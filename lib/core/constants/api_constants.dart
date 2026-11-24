@@ -6,7 +6,14 @@ class ApiConstants {
   /// Android Emulator -> http://10.0.2.2:5000
   /// HP fisik (satu jaringan WiFi) -> http://IP_KOMPUTER:5000
   /// Web/Desktop -> http://localhost:5000
-  static const String baseUrl = 'http://localhost:5000';
+  ///
+  /// Saat build produksi, suntikkan alamat backend yang sudah online:
+  ///   flutter build web --release --dart-define=API_BASE_URL=https://api-kamu
+  /// Tanpa --dart-define, nilai bawaan di bawah dipakai (cukup untuk dev lokal).
+  static const String baseUrl = String.fromEnvironment(
+    'API_BASE_URL',
+    defaultValue: 'http://localhost:5000',
+  );
 
   static const String apiPrefix = '/api';
 
